@@ -1,0 +1,5 @@
+.vscode
+plugins
+dist/css
+dist/img
+dist/js

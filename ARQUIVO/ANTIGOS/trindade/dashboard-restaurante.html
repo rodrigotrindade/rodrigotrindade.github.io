@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <title>Security Fast Pass</title>
+    <style>
+        *{ outline: 0 !important; }
+
+        :root {
+            --cz: #CCC;
+            --cy: #4bafaf;
+            --vm: #af4b4b;
+            --place: #CCD;
+
+            --style: italic;
+        }
+
+        .vm{ color: #F00; }
+        .am{ color: #ffd900; }
+        .vd{ color: #00ff73; }
+        
+        body,html{ font-family: 'Ubuntu', sans-serif; }
+        ::-webkit-input-placeholder{ color: var(--place); font-style: var(--style); }
+        ::-moz-placeholder{ color: var(--place); font-style: var(--style); }
+        :-ms-input-placeholder{ color: var(--place); font-style: var(--style); }
+        ::-ms-input-placeholder{ color: var(--place); font-style: var(--style); }
+        ::placeholder{ color: var(--place); font-style: var(--style); }
+
+        p{ margin-bottom: .7rem; }
+        .container{ max-width: 100% !important; }
+        .navbar { position: relative; padding: 30px 0; }
+        .brand { position: absolute; left: 45%; margin-left: -114px !important; display: block; }
+
+        .card{ width: 15rem; text-align: center; margin: 10px; border: 2px solid var(--cy); border-radius: 10px; overflow: hidden; }
+        /* .card{ width: 18rem; text-align: center; margin: 10px; border: 2px solid var(--cy); border-radius: 10px; overflow: hidden; } */
+        /* .column{ margin: 0 auto; } */
+        .card-body{ padding: 0; color: var(--cy); }
+        .card-title{ margin-top: .75rem; font-size: 16px; }
+        .img-card{ height: 140px; width: 100%; border-bottom: 1px solid var(--cz); }
+        .card-text{ text-align:center; }
+        .card .btn{ margin: 0 auto; width: 100px; }
+        .card-text input{ border: 1px solid var(--cz); border-radius: 5px; margin-bottom: 5px; padding: 4px; color: var(--cy); }
+        .ready{ height: 132px; font-size: 22px; padding-top: 50px; color: var(--cy); }
+        .btn-primary{ background-color: var(--cy); border-color: var(--cy); }
+        .info,.close{ position: absolute; right: 5px; margin-top: 5px; cursor: pointer; }
+        .close{ right: 8px; }
+        .info span{ color: var(--cy); }
+        .close span{ color: var(--vm); }
+        .verso{ position: absolute; width: 15rem; height: 412px; background-color: #FFF; display: none; }
+        .result{ height: 165px; }
+        .result .table thead th,
+        .resultVerso .table thead th{ border-bottom: 0; font-size: 11px; color: #666; }
+        .result .table td,
+        .resultVerso .table td{ padding: 0; }
+        .infoLote{ font-size: 11px; padding-top: 5px !important; }
+        .resultVerso{ height: 320px; overflow-y: scroll; width: 260px; margin-left: 0; margin-top: 10px; }
+        .red{ border: 1px solid #F00 !important; }
+        .warning{ font-size: 11px; color: #F00; height: 10px; }
+        .legenda{ margin: 0; margin-bottom: 10px; padding:0; display: table-row; }
+        .legenda li{ padding-left: 10px; list-style: none; display: table-cell; font-size: 9px; vertical-align: middle; }
+        .legenda li span{ vertical-align: middle; font-size: 20px; margin-right: 2px; }
+
+        @media (max-width: 720px) {
+            .brand{ left: 35% !important; font-size: 15px; }
+        } 
+
+    </style>
+    <script>
+        const $a = jQuery.noConflict();
+        const tempoRefresh = 5;
+        // URL QUE RECEBERÁ O PROPRIETARIO E O LOTE
+        const urlEnvio = "";
+        // A LEGENDA ABAIXO SEGUE A ORDEM VERDE, AMARELO E VERMELHO
+        const legendaVerso = ["Atendido","Em curso","Problema"];
+
+        $a(document).ready(function(){
+            const stringJSON = '[{"id":"1","nome":"Condomínio Velas da Marina","logo": "https://www.jeremias.com.br/assets/condominio-velas-da-marina.jpg","info":[{"nomeLote":"Fulano / R12","hora":"10:59","status":"vd"},{"nomeLote":"Fulano / R12","hora":"10:59","status":"vd"},{"nomeLote":"Fulano / R12","hora":"10:59","status":"vd"},{"nomeLote":"Fulano / R12","hora":"10:59","status":"vd"},{"nomeLote":"Fulano / R12","hora":"10:59","status":"vd"},{"nomeLote":"Fulano / R12","hora":"10:59","status":"vd"},{"nomeLote":"Fulano / R12","hora":"10:59","status":"am"},{"nomeLote":"Fulano / R12","hora":"10:59","status":"am"},{"nomeLote":"Fulano / R12","hora":"10:59","status":"vd"},{"nomeLote":"Beltrano / R13","hora":"09:23","status":"vd"},{"nomeLote":"Ciclano / R11","hora":"21:22","status":"vm"}]},{"id":"2","nome":"Condomínio Velas da Marina","logo": "https://www.jeremias.com.br/assets/condominio-velas-da-marina.jpg","info":[{"nomeLote":"Fulano / R12","hora":"10:59","status":"vd"},{"nomeLote":"Beltrano / R13","hora":"09:23","status":"vd"},{"nomeLote":"Ciclano / R11","hora":"21:22","status":"vm"}]},{"id":"3","nome":"Condomínio Velas da Marina","logo": "https://www.jeremias.com.br/assets/condominio-velas-da-marina.jpg","info":[{"nomeLote":"Fulano / R12","hora":"10:59","status":"vd"},{"nomeLote":"Beltrano / R13","hora":"09:23","status":"vd"},{"nomeLote":"Ciclano / R11","hora":"21:22","status":"vm"}]},{"id":"4","nome":"Condomínio Velas da Marina","logo": "https://www.jeremias.com.br/assets/condominio-velas-da-marina.jpg","info":[{"nomeLote":"Fulano / R12","hora":"10:59","status":"vd"},{"nomeLote":"Beltrano / R13","hora":"09:23","status":"vd"},{"nomeLote":"Ciclano / R11","hora":"21:22","status":"vm"}]},{"id":"5","nome":"Condomínio Velas da Marina","logo": "https://www.jeremias.com.br/assets/condominio-velas-da-marina.jpg","info":[{"nomeLote":"Fulano / R12","hora":"10:59","status":"vd"},{"nomeLote":"Beltrano / R13","hora":"09:23","status":"vd"},{"nomeLote":"Ciclano / R11","hora":"21:22","status":"vm"}]}]';
+            const jsonPython = JSON.parse(stringJSON);
+            // goLive(jsonPython);   
+
+            for(let i=0;i<jsonPython.length;i++)
+                $a(".sfp-cards").append(getCard(jsonPython[i]));  
+        });
+
+        function goLive(jsonPython){
+
+            // REFRESH CONTÍNUO
+            setInterval(function(){
+                // console.log("Refresh!");
+            },tempoRefresh*1000);  
+        }
+
+        function setReady(id){
+            const proprietario = $a("#"+id).find($a("[name=proprietario]")).val();
+            const lote = $a("#"+id).find($a("[name=lote]")).val();
+            const fields = ["proprietario","lote"];
+
+            let fail = false;
+            for(let i=0;i<fields.length;i++){
+                $a("#"+id).find($a("[name="+fields[i]+"]")).removeClass("red");
+                $a("#"+id).find(".warning").text("");
+                const field = $a("#"+id).find($a("[name="+fields[i]+"]")).val();
+
+                if(!field){
+                    $a("#"+id).find($a("[name="+fields[i]+"]")).addClass("red");
+                    $a("#"+id).find(".warning").text("Campos obrigatórios");
+                    fail = true;
+                }
+            }
+
+            if(fail)
+                return;
+
+            if(!urlEnvio){
+                $a("#"+id).find(".warning").text("Requisição não configurada");
+                return;
+            }
+        
+            $a.getJSON(urlEnvio,function(json){
+                $a("#"+id).find(".result").html("<div class='ready'>"+json.result+"</div>");
+            });
+        }
+
+        function showInfo(id,show){
+            if(show){
+                $a("#"+id).find(".verso").show();
+                $a("#"+id).find(".info").hide();
+            }else{
+                $a("#"+id).find(".verso").hide();
+                $a("#"+id).find(".info").show();
+            }
+        }
+
+        function getCard(json){
+            const week = ["Domingo","Segunda-Feira","Terça-Feira","Quarta-Feira","Quinta-Feira","Sexta-Feira","Sábado"];
+            const date = new Date();
+            const month = (date.getMonth()<10) ? "0"+(parseInt(date.getMonth())+1) : (parseInt(date.getMonth())+1);
+            const title = week[date.getDay()]+", "+date.getDate()+"/"+month;
+
+            let html = '';
+            html += '<div class="column">';
+            html += '   <div class="card" id="'+json.id+'">';
+            html += '       <div class="verso">';
+            html += '           <div class="close" title="Fechar" onclick="showInfo('+json.id+',false);"><span class="material-icons">cancel</span></div>';
+            html += '           <div class="card-body">';
+            html += '               <h5 class="card-title">'+title+'</h5>';
+            html += '               <ul class="legenda">';
+            html += '                   <li><span class="material-icons vd">trip_origin</span>'+legendaVerso[0]+'</li>';
+            html += '                   <li><span class="material-icons am">trip_origin</span>'+legendaVerso[1]+'</li>';
+            html += '                   <li><span class="material-icons vm">trip_origin</span>'+legendaVerso[2]+'</li>';
+            html += '               </ul>';
+            html += '               <div class="resultVerso">';
+            html += '                   <table class="table table-striped">';
+            html += '                       <thead>';
+            html += '                            <tr>';
+            html += '                                <th scope="col">Nome/Lote</th>';
+            html += '                                <th scope="col">Hora</th>';
+            html += '                                <th scope="col">Status</th>';
+            html += '                            </tr>';
+            html += '                        </thead>';
+            html += '                        <tbody>';
+
+            for(let i=0;i<json.info.length;i++){
+                html += '                        <tr>';
+                html += '                            <td class="infoLote">'+json.info[i].nomeLote+'</td>';
+                html += '                            <td class="infoLote">'+json.info[i].hora+'</td>';
+                html += '                            <td><span class="material-icons '+json.info[i].status+'">trip_origin</span></td>';
+                html += '                        </tr>';
+            }
+
+            html += '                        </tbody>';
+            html += '                   </table>';
+            html += '               </div>';
+            html += '           </div>';
+            html += '       </div>';
+            html += '       <div class="frente">';
+            html += '           <div class="info" title="Mais informações..." onclick="showInfo('+json.id+',true);"><span class="material-icons">info</span></div>';
+            html += '           <div class="img-card" style="background: url('+json.logo+') center center; background-size: cover;"></div>';
+            html += '           <div class="card-body">';
+            html += '               <h5 class="card-title">'+json.nome+'</h5>';
+            html += '               <div class="result">';
+            html += '                   <p class="card-text">';
+            html += '                       <input type="text" placeholder="Proprietário" value="" name="proprietario">';
+            html += '                       <input type="text" placeholder="Lote/Casa" value="" name="lote">';
+            html += '                       <div class="warning"></div>';
+            html += '                   </p>';
+            html += '                   <a href="#" onclick="setReady('+json.id+');" class="enviar btn btn-primary">Enviar</a>';
+            html += '               </div>';
+            html += '           </div>';
+            html += '       </div>';
+            html += '   </div>';
+            html += '</div>';
+
+            return html;
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark text-center">
+        <a class="navbar-brand brand" href="#">
+            <img src="img/logo-br.png" alt="">
+            <span class="">Security Fast Pass | Painel de Autorização</span>
+        </a>
+    </nav>
+    <div class="container">
+        <div class="row sfp-cards">
+
+        </div>
+    </div>
+</body>
+</html>

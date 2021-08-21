@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=geometry,places&amp;ext=.js&key=AIzaSyDQ28FXhimt5_1yw4sesSD2BKjjhnXzn1g"></script>
+    <title>Security Fast Pass</title>
+    <style>
+        *{ outline: 0 !important; }
+        body,html{ font-family: 'Ubuntu', sans-serif; padding: 5px; background-color: #F1F1F1; }
+
+        :root {
+            --cz: #CCC;
+            --cy: #4bafaf;
+            --vm: #af4b4b;
+            --place: #CCD;
+
+            --style: italic;
+        }
+
+        .vm{ color: #F00; }
+        .am{ color: #ffd900; }
+        .vd{ color: #00ff73; }
+        .dotted{ border: 1px dotted #CCC; }
+
+        .container{ padding: 10px; }
+        .foto{ margin: 0 auto; text-align: center; border: 1px solid #CCC; height: 120px; width: 95px; background-position: center; background-size: cover; background-repeat: no-repeat; }
+        .info-foto{ background-color: var(--cy); width: 100%; height: 100%; }
+        .info-foto ul{ margin:10px 0 0 0; padding:10px; }
+        .info-foto ul li{ list-style: none; color: #FFF; text-transform: uppercase; font-weight: 500; font-size: 22px; }
+        .square,
+        .info,
+        .rectangle{ background-color: #FFF; width: 100%; margin:0 auto; border: 1px solid #ddd; }
+        .square{  height: 130px; }
+        .rectangle{  height: 150px; }
+        nav{ font-size: 12px !important; color: #333; line-height: 12px; }
+        nav span{ font-size: 14px !important; margin-top: 2px; }
+        .info ul{ margin: 0; padding: 0; }
+        .info ul li{ list-style: none; font-size: 13px; color: var(--cy); }
+        .info ul li hr{ margin: 6px 0; }
+        .info ul li span{ color: #333; font-size: 11px  }
+        .buttons{ text-align: center; }
+        .buttons button{ width: 110px; margin: 0 auto; }
+        #model{ display: none; }
+        .square .graph{ margin-top: -10px; height: 85px; width: 100%; }
+        .rectangle .graph{ margin-top: 20px; height: 115px; width: 100%; }
+        .row div{ padding: 2px; }
+        .ml-10{ margin-left: 10px; }
+        #tempo{ color: var(--cy); text-align: center; font-size: 34px; margin-top: 30px; }
+
+        svg:first-child > g > text[text-anchor~=middle]{ font-size:9px; color: #000; font-weight: 700; }
+
+
+        @media (max-width: 720px) {
+            /* .brand{ left: 35% !important; font-size: 15px; } */
+        } 
+
+    </style>
+    <script>
+        const $a = jQuery.noConflict();
+        const stringJSON = '{"mapPoints":[{"address":{"lng":"-51.21529","lat":"-30.03393"}},{"address":{"lng":"-51.21601","lat":"-30.03411"}},{"address":{"lng":"-51.21666","lat":"-30.03424"}},{"address":{"lng":"-51.21723","lat":"-30.0346"}},{"address":{"lng":"-51.21772","lat":"-30.03486"}},{"address":{"lng":"-51.22048","lat":"-30.03446"}},{"address":{"lng":"-51.22068","lat":"-30.0347"}}],"destinoLote":"Lote U4","destinoNome":"João da Silva Donato","origem":"Nostro Molino","mapa":{"status":"vd"},"tempoPermanencia": [0,10,32,44,80,120,200],"velocidade": [11.8,12.05,16.65,11.87,10.5,12.22,11.3],"distancia":[10,30,50,100,110,120,130],"urlFoto":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRWKd_7CMz0wptMKEz_OLFTHAKdvy769lIyrH3aLrhWHAKCmu8o41pTJ9I2R_i28oMDpA&usqp=CAU","nome":"Fulano de Tal","cpf":"123.456.789-00" }';
+        const VELOC_MAX_PERMITIDA = 20;
+        const VELOC_OFFSET = 3;
+        
+        const json = JSON.parse(stringJSON);
+        const velocScale = VELOC_MAX_PERMITIDA+10;
+        const velocVerde = [VELOC_MAX_PERMITIDA-(VELOC_OFFSET)*2,VELOC_MAX_PERMITIDA];
+        const velocAmarela = [VELOC_MAX_PERMITIDA-VELOC_OFFSET,VELOC_MAX_PERMITIDA];
+        const velocVermelha = [VELOC_MAX_PERMITIDA,velocScale]; 
+        let maxVel = 0;
+        let maxTime = 0;
+
+        $a(document).ready(function(){
+            google.charts.load('current', {'packages':['gauge','corechart']});
+            setApp(json);
+        });
+
+        function setApp(json){
+            let model = $a("#model").html();
+            model = model.replace(/##NOME##/g,json.nome);
+            model = model.replace(/##CPF##/g,json.cpf);
+
+            if(!json.urlFoto)
+                model = model.replace(/##URL_FOTO##/g,"https://via.placeholder.com/75x100?text=ENTREGADOR"); 
+            else
+                model = model.replace(/##URL_FOTO##/g,json.urlFoto); 
+            
+            model = model.replace(/##ROUT_STATUS##/g,json.mapa.status); 
+            model = model.replace(/##ORIGEM##/g,json.origem);
+            model = model.replace(/##DEST_NOME##/g,json.destinoNome); 
+            model = model.replace(/##DEST_LOTE##/g,json.destinoLote);
+
+            for(let i=0;i<json.velocidade.length;i++)
+                if(maxVel < json.velocidade[i])
+                    maxVel = json.velocidade[i];
+
+            for(let i=0;i<json.tempoPermanencia.length;i++)
+                if(maxTime < json.tempoPermanencia[i])
+                    maxTime = json.tempoPermanencia[i];
+
+            model = model.replace(/##TIME_STATUS##/g,moment.utc(maxTime*1000).format('HH:mm:ss')); 
+
+            $a(".container").html(model);
+            google.charts.setOnLoadCallback(drawGauge);
+            google.maps.event.addDomListener(window, 'load', drawMap);
+        }
+
+        function drawMap(){
+            const locations = json.mapPoints;
+
+            window.map = new google.maps.Map(document.getElementById('mapa'), {
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                scrollwheel: false
+            });
+
+            let flightPlanCoordinates = [];
+            let bounds = new google.maps.LatLngBounds();
+
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i].address.lat, locations[i].address.lng),
+                    map: map
+                });
+                flightPlanCoordinates.push(marker.getPosition());
+                bounds.extend(marker.position);
+            }
+
+            map.fitBounds(bounds);
+
+            const flightPath = new google.maps.Polyline({
+                map: map,
+                path: flightPlanCoordinates,
+                strokeColor: "#FF0000",
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+        }
+
+        function drawLine(){
+            $a("#velocidade").click(function(){
+                $a(this).unbind("click");
+                drawGauge();
+            });
+            $a("#velocidade").html("");
+            $a("#velocidade").removeClass("ml-10");
+
+            let arr = [];
+            arr[0] = ['Distância','Velocidade'];
+            for(let i=0;i<json.velocidade.length;i++){
+                let tmp = [json.distancia[i],json.velocidade[i]];
+                arr.push(tmp);
+            }
+
+            const data = google.visualization.arrayToDataTable(arr);
+            const options = {
+                title: "Distância x Velocidade",
+                curveType: 'function',
+                legend: { position: 'none' },
+                width: 150,
+                height: 100
+            };
+            let chart = new google.visualization.LineChart(document.getElementById('velocidade'));
+            chart.draw(data, options)
+        }
+
+        function drawGauge(){
+            $a("#velocidade").click(function(){
+                $a(this).unbind("click");
+                drawLine(json.velocidade);
+            });
+            $a("#velocidade").addClass("ml-10");
+
+            const data = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['Veloc.Máx.', maxVel],
+            ]);
+
+            const options = {
+                width: 400, height: 120,
+                redFrom: velocVermelha[0], redTo: velocVermelha[1],
+                yellowFrom:velocAmarela[0], yellowTo: velocAmarela[1],
+                greenFrom:velocVerde[0], greenTo: velocVerde[1],
+                minorTicks: 6,
+                max: velocScale,
+            };
+
+            let chart = new google.visualization.Gauge(document.getElementById('velocidade'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+    <div class="container"></div>
+    <div id="model">
+        <div class="row">
+            <div class="col-4">
+                <div class="foto" style="background-image: url(##URL_FOTO##);"></div>
+            </div>
+            <div class="col-8">
+                <div class="info-foto">
+                    <ul>
+                        <li>##NOME##</li>
+                        <li>##CPF##</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="square clearfix p-2">
+                    <div id='velocidade' class="graph"></div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="square clearfix p-2">
+                    <nav>
+                        <div class="float-left">Tempo de Permanência</div>
+                    </nav>
+                    <div id="tempo" class="graph">##TIME_STATUS##</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="rectangle clearfix p-2">
+                    <nav>
+                        <div class="float-left">Mapa da Rota</div>
+                        <div class="float-right"><span class="material-icons ##ROUT_STATUS##">trip_origin</span></div>
+                    </nav>
+                    <div id="mapa" class="graph"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="info p-2">
+                    <ul>
+                        <li>
+                            <span>Origem</span><br>
+                            ##ORIGEM##
+                            <hr>
+                        </li>
+                        <li>
+                            <span>Destino</span><br>
+                            ##DEST_NOME##<br>
+                            ##DEST_LOTE##
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row buttons mt-2">
+            <div class="col-6">
+                <button type="button" class="btn btn-success">Ok</button>
+            </div>
+            <div class="col-6">
+                <button type="button" class="btn btn-danger">Problema</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

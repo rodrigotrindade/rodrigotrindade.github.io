@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <title>Security Fast Pass</title>
+    <style>
+        :root {
+            --main: #EB6D2F;
+            --lr: #F92;
+            --am: #FD0;
+            --cz: #F8F7F1;
+            --cz-1: #CCC;
+            --cz-2: #999;
+            --cz-3: #333;
+            --cy: #adad83b9;
+            --cy-dark: #4bafaf;
+            --br: #ffffff;
+            --pr: #5A3733;
+            --pt: #000;
+        }
+
+        .vd{ color: #0F0; }
+        .vm{ color: #F00; }
+        .am{ color: #FD0; }
+
+        body,html{ font-family: 'Ubuntu', sans-serif; }
+        .container{ max-width: 100% !important; }
+        .numero{ color: #000; }
+        .numero ul{ margin: 0; padding: 0; }
+        .numero ul li{ display: inline !important; vertical-align: middle; }
+        .numero .quantidade{ font-size: 60px; }
+        .numero .label{ font-size: 20px; padding-left: 20px; }
+
+        .services-sc{ margin-top: 5%; }
+
+        .legenda{ position: fixed; bottom: 0; left: 42%; padding: 0  0 10px 10px; width: 280px; height: 27px; background-color: #00000030; }
+        .legenda .leg ul{ margin: 0; padding: 0; }
+        .legenda .leg ul li{ list-style: none; display: inline; margin-right: 20px; }
+        .legenda .leg ul li i{ text-shadow: 0px 0px 3px var(--cz-3); }
+        .legenda .leg ul li span{ margin-left: 10px; color: #333; font-size: 13px; }
+
+        .info{ background:url(img/bg.png) center top; background-size: cover; position: absolute; z-index: 99; filter: drop-shadow(2px 2px 2px #00000050); }
+        .info .icon ul{ margin:0; margin-top: 10px; padding: 0; }
+        .info .icon ul li{ list-style: none; display:list-item; font-size: 11px; line-height: 12px; color: var(--lr); font-weight: normal; font-style: italic; }
+
+        .active{ color: var(--pt) !important; font-weight: 500 !important; font-style: normal !important; font-size: 12px !important; }
+        .timeover{ color:#F00 !important; font-weight: 700 !important;}
+
+        @media (max-width: 2000px) {
+            .info{ width: 180px; height: 200px; }
+            .info ul{ position: absolute; margin:40px 0 0 32px; padding:0; width: 108px; }
+            .info ul li{ list-style: none; text-align: center; font-size: 18px; line-height: 20px; font-weight: 500; }
+            .info .icon{ margin-top: 10px; font-size: 22px; height: 32px; line-height: 21px; }
+            .info ul .led{ font-size: 24px !important; margin-bottom: 10px; margin-top: -30px; text-shadow: 0px 0px 3px var(--cz-3); }
+
+            .cell{ height: 220px; margin: 0 15px; }
+            .legenda{ left: 42%; }
+        } 
+
+        @media (max-width: 1850px) {
+            .info{ width: 160px; height: 180px; }
+            .info ul{ position: absolute; margin:34px 0 0 21px; padding:0; width: 108px; }
+            .info ul li{ list-style: none; text-align: center; font-size: 16px; line-height: 20px; font-weight: 500; }
+            .info .icon{ margin-top: 5px; font-size: 20px; height: 47px; line-height: 20px; }
+            .info ul .led{ font-size: 20px !important; margin-top: -24px; margin-bottom: 10px; text-shadow: 0px 0px 3px var(--cz-3); }
+
+            .cell{ height: 130px; margin: 0 10px; }
+            .legenda{ left: 40%; }
+        }
+
+        @media (max-width: 1700px) {
+            .info{ width: 140px; height: 160px; }
+            .info ul{ position: absolute; margin:36px 0 0 11px; padding:0; width: 108px; }
+            .info ul li{ list-style: none; text-align: center; font-size: 13px; line-height: 17px; font-weight: 600; }
+            .info .icon{ margin-top: 4px; font-size: 18px; height: 35px; line-height: 19px; }
+            .info .icon ul{ margin-top: 7px; }
+            .info .icon ul li{ font-size: 10px; line-height: 10px; }
+            .info ul .led{ font-size: 20px !important; margin-top: -25px; margin-bottom: 10px; text-shadow: 0px 0px 3px var(--cz-3); }
+
+            .cell{ height: 130px; }
+            .legenda{ left: 38%; }
+        }
+
+        @media (max-width: 1470px) {
+            .info{ width: 120px; height: 140px; }
+            .info ul{ position: absolute; margin:36px 0 0 4px; padding:0; width: 108px; }
+            .info ul li{ list-style: none; text-align: center; font-size: 12px; line-height: 14px; font-weight: 600; }
+            .info .icon{ margin-top: 4px; font-size: 16px; height: 19px; line-height: 16px; }
+            .info .icon ul{ margin-top: 2px; }
+            .info .icon ul li{ font-size: 10px; line-height: 10px; }
+            .info ul .led{ font-size: 20px !important; margin-top: -26px; margin-bottom: 10px; text-shadow: 0px 0px 3px var(--cz-3); }
+
+            .cell{ height: 130px; }
+            .legenda{ left: 36%; }
+        }
+
+        .overlay{ position: fixed; top:0; left: 33%; border-left: 1px solid var(--cy-dark); border-right: 1px solid var(--cy-dark); background-color: rgba(111, 207, 236, 0.1); height: 100%; width: 33%; right: 0; }
+        #favoModelo{ display: none !important; }
+        .cell{ cursor: pointer; }
+
+        .navbar {
+            position: relative;
+            padding: 30px 0;
+        }
+        .brand {
+            position: absolute;
+            left: 45%;
+            margin-left: -114px !important;
+            display: block;
+        }
+    </style>
+    <script>
+        const $a = jQuery.noConflict();
+        const tempoRefresh = 5;
+
+        $a(document).ready(function(){
+            const stringJSON = '{"autorizando": [{"lote": "L.1","quadra": "B.12","restaurante": "Village Fast Food","link": "index.html","status": "warning","tempo1":"0:22:32","tempo2":"0:00:00","tempo3":"0:00:00","timeover":false},{"lote": "L.2","quadra": "B.22","restaurante": "Roda Pizza","link": "index.html","status": "check","tempo1":"0:32:11","tempo2":"0:00:00","tempo3":"0:00:00","timeover":false},{"lote": "L.3","quadra": "B.32","restaurante": "Mac Donalds","link": "index.html","status": "blank","tempo1":"0:55:15","tempo2":"0:00:00","tempo3":"0:00:00","timeover":true}],"chegando": [{"lote": "L.3","quadra": "B.33","restaurante": "Trindade Fast Food","link": "index.html","status": "warning","tempo1":"0:22:32","tempo2":"0:33:01","tempo3":"0:00:00","timeover":false}],"aqui": [{"lote": "L.3","quadra": "B.33","restaurante": "Trindade Fast Food","link": "index.html","status": "check","tempo1":"0:22:32","tempo2":"0:13:10","tempo3":"0:44:20","timeover":true}]}';
+            const jsonPython = JSON.parse(stringJSON);
+            goLive(jsonPython);                 
+        });
+
+        function goLive(jsonPython){
+            // PRIMEIRA CARGA
+            createFavos(jsonPython);
+
+            // REFRESH CONTÍNUO
+            setInterval(function(){
+                createFavos(jsonPython);
+                // console.log("Refresh!");
+            },tempoRefresh*1000);  
+        }
+
+        function createFavos(json){
+            $a(".favos").html(""); 
+            $a("#autorizando .quantidade").text(json.autorizando.length);
+            $a("#autorizando .label").text("Aguardando Autorização");
+            $a("#chegando .quantidade").text(json.chegando.length);
+            $a("#chegando .label").text("Entregas Chegando");
+            $a("#aqui .quantidade").text(json.aqui.length);
+            $a("#aqui .label").text("Dentro do Condomínio");
+
+            for(let i=0;i<json.autorizando.length;i++)
+                $a("#autorizando .favos").append(getTemplateFavo(json.autorizando[i],"autorizando"));
+
+            for(let i=0;i<json.chegando.length;i++)
+                $a("#chegando .favos").append(getTemplateFavo(json.chegando[i],"chegando"));
+
+            for(let i=0;i<json.aqui.length;i++)
+                $a("#aqui .favos").append(getTemplateFavo(json.aqui[i],"aqui"));
+
+            $a(".cell").click(function(){
+                if($a(this).attr("rel"))
+                    window.open($a(this).attr("rel"));
+            });
+        }
+
+        function getTemplateFavo(json,pool){
+            let favo = $a("#favoModelo").html();
+            favo = favo.replace(/##quadra##/g,json.quadra);
+            favo = favo.replace(/##lote##/g,json.lote);
+            favo = favo.replace(/##restaurante##/g,json.restaurante);
+            favo = favo.replace(/##link##/g,json.link);
+            favo = favo.replace(/##tempo1##/g,json.tempo1);
+            favo = favo.replace(/##tempo2##/g,json.tempo2);
+            favo = favo.replace(/##tempo3##/g,json.tempo3);
+
+            const timeover = (json.timeover) ? "timeover" : "";
+
+            if(pool === "autorizando"){
+                favo = favo.replace(/##t1##/g,"active "+timeover);
+                favo = favo.replace(/##t2##/g,"");
+                favo = favo.replace(/##t3##/g,"");
+            }else if(pool === "chegando"){
+                favo = favo.replace(/##t1##/g,"");
+                favo = favo.replace(/##t2##/g,"active "+timeover);
+                favo = favo.replace(/##t3##/g,"");
+            }else{
+                favo = favo.replace(/##t1##/g,"");
+                favo = favo.replace(/##t2##/g,"");
+                favo = favo.replace(/##t3##/g,"active "+timeover);
+            }
+
+            if(json.status === "warning")
+                favo = favo.replace(/##status##/g,"exclamation-triangle am");
+            else if(json.status === "check")
+                favo = favo.replace(/##status##/g,"check-circle vd");
+
+            return favo;
+        }
+    </script>
+</head>
+<body>
+    <div class="overlay"></div>
+    <nav class="navbar navbar-dark bg-dark text-center">
+        <a class="navbar-brand brand" href="#">
+            <img src="img/logo-br.png" alt="">
+            <span class="">Security Fast Pass | Painel de Entregas</span>
+        </a>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div id="autorizando" class="col-4">
+                <div class="numero text-center">
+                    <ul>
+                        <li class="quantidade text-center"></li>
+                        <li class="label text-center"></li>
+                    </ul>                    
+                </div>
+                <div class="favos services-sc layout-icon-row ltx-style-gray row"></div>
+            </div>
+            <div id="chegando" class="col-4 h-100">
+                <div class="numero text-center">
+                    <ul>
+                        <li class="quantidade text-center"></li>
+                        <li class="label text-center"></li>
+                    </ul>   
+                </div>
+                <div class="favos services-sc layout-icon-row ltx-style-gray row"></div>
+            </div>
+            <div id="aqui" class="col-4">
+                <div class="numero text-center">
+                    <ul>
+                        <li class="quantidade text-center"></li>
+                        <li class="label text-center"></li>
+                    </ul>   
+                </div>
+                <div class="favos services-sc layout-icon-row ltx-style-gray row"></div>
+            </div>
+        </div>
+    </div>
+    <div class="legenda">
+        <div class="leg">
+            <ul>
+                <li class="led"><i class="fas fa-exclamation-triangle am"></i><span>Processo Incompleto</span></li>
+                <li class="led"><i class="fas fa-check-circle vd"></i><span>Pronto</span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- FAVO MODELO -->
+    <div id="favoModelo">
+        <div rel="##link##" title="Clique para verificar!" class="col-3 mb-2 cell">
+            <div class="info">
+                <ul>
+                    <li class="led"><i class="fas fa-##status##"></i></li>
+                    <li>##quadra##</li>
+                    <li>##lote##</li>
+                    <li class="icon">##restaurante## 
+                        <ul>
+                            <li class="##t1##">##tempo1##</li>
+                            <li class="##t2##">##tempo2##</li>
+                            <li class="##t3##">##tempo3##</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div> 
+    </div>
+    <!-- FIM FAVO MODELO -->
+</body>
+</html>

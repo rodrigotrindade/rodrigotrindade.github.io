@@ -1,0 +1,139 @@
+<div class="modal fade modal-detalhes" id="modal-detalhes" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">##NOME_COMPLETO##</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body justify-content-between btns-aprovacao">
+        <div class="input-group">
+          <span class="input-group-append">
+            <button type="button" class="btn btn-danger btn-esq-campo" data-dismiss="modal">Rejeitar</button>
+          </span>
+          <input type="text" name="message" placeholder="Descreva o motivo em caso de rejeição" class="form-control border-left-0">
+          <span class="input-group-append">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Liberar</button>
+          </span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-sm-5">
+            <div id="foto" class="carousel slide" data-interval="false" data-ride="carousel">
+
+              <!-- Indicators -->
+              <ul class="carousel-indicators">
+                <li data-target="#foto" data-slide-to="0" class="active"></li>
+                <li data-target="#foto" data-slide-to="1"></li>
+                <li data-target="#foto" data-slide-to="2"></li>
+              </ul>
+            
+              <!-- The slideshow -->
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="d-block w-100" src="dist/entradasegura/img/user-lte.png" alt="">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="dist/entradasegura/img/cnh.png" alt="">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="dist/entradasegura/img/placa.png" alt="">
+                </div>
+              </div>
+            
+              <!-- Left and right controls -->
+              <a class="carousel-control-prev" href="#foto" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              </a>
+              <a class="carousel-control-next" href="#foto" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              </a>
+            
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <div class="info-box">
+              <span class="info-box-icon bg-mono"><i class="fas fa-id-card"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">CNH</span>
+                <span class="info-box-number text-left">
+                  1234567890
+                </span>
+              </div>
+              <div class="info-box-content">
+                <span class="info-box-text">CPF</span>
+                <span class="info-box-number">
+                  IMA-1234
+                </span>
+              </div> 
+            </div>
+            <div class="info-box">
+              <span class="info-box-icon bg-mono"><i class="fas fa-map-marker-alt"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Origem</span>
+                <span class="info-box-number">Restaurante Nostro Molino<br></span>
+              </div>
+            </div>
+
+            <table class="table table-bordered text-center">
+              <thead>
+                <tr>
+                  <th>Lote</th>
+                  <th>Proprietário</th>
+                  <th>Autorizador</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>U4</td>
+                  <td>
+                    João da Silva
+                  </td>
+                  <td>
+                    Maria Rosa
+                  </td>
+                </tr>
+                <tr>
+                  <td>U4</td>
+                  <td>
+                    João da Silva
+                  </td>
+                  <td>
+                    Maria Rosa
+                  </td>
+                </tr>
+                <tr>
+                  <td>U4</td>
+                  <td>
+                    João da Silva
+                  </td>
+                  <td>
+                    Maria Rosa
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="direct-chat-msg">
+              <div class="direct-chat-infos clearfix">
+                <span class="direct-chat-name float-left">Importante:</span>
+                <span class="direct-chat-timestamp float-right"></span>
+              </div>
+              <!-- /.direct-chat-infos -->
+              <img class="direct-chat-img" src="dist/entradasegura/img/logo_icon.png" alt="">
+              <!-- /.direct-chat-img -->
+              <div class="direct-chat-text">
+                Lorem ipsum dolor sit amet consectetur adipsing elit!
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>
+          </div>
+        </div>
+      </div>     
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

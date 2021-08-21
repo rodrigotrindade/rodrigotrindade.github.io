@@ -1,0 +1,133 @@
+:root{
+    --az-0: #002943;
+    --az-1: #03ABBB;
+    --az-2: #74C3D0;
+    --rx-0: #4c2da3;
+    --rx-1: #7d68b9;
+    --am-0: #FF0;
+    --am-1: #FFC107;
+    --vm: #DC3545;
+    --vd: #28A745;
+    --cz-0: #999;
+    --cz-1: #DDD;
+    --cz-2: #EEE;
+    --cz-3: #333;
+    --cz-4: #eef;
+    --cz-icon: rgb(0,0,0,.1);
+    --br: #FFF;
+}
+@font-face {
+    font-family: 'sony';
+    src: url('../fonts/sony.eot');
+    src: url('../fonts/sony.eot') format('embedded-opentype'),
+        url('../fonts/sony.woff2') format('woff2'),
+        url('../fonts/sony.woff') format('woff'),
+        url('../fonts/sony.ttf') format('truetype'),
+        url('../fonts/sony.svg#sony') format('svg');
+}
+
+[class*="sidebar-dark-"] { background-color: var(--az-0); }
+.brand-link{ padding: 1.5rem 0.5rem; line-height: 0; }
+.brand-link .brand-image{ max-height: 48px; margin-left:0; margin-right:0.5rem; margin-top: -22px; }
+.brand-text{ font-family: 'sony', sans-serif; font-size: 1.7rem; }
+
+.main-footer a{ color: var(--az-1); }
+.card-entradasegura .badge{ font-size: 100%; }
+.card-entradasegura .navbar-badge{ right: -4px; font-weight: 600; }
+.card-body .description-block,
+.card-body .description-text{ text-transform: none; }
+.card-body .description-text{ font-size:14px; }
+.card-body .description-header{ line-height:12px; text-transform: uppercase; font-size: 13px; }
+.card-expansivel h3{ font-size: 1.3rem; font-weight: 600; line-height: 24px; white-space: normal !important; }
+.info-box { min-height: 45px; }
+.info-box .info-box-content{ line-height: 1; }
+.info-box .info-box-icon{ font-size: 20px; padding: 6px; font-weight: normal; }
+.nome-entregador{ position: absolute; bottom: 10px; width: 300px; background-color:#00000066; color: var(--am-1); }
+.card-entregador{ height: 438px; }
+.entregador{ border-radius: 10px; overflow: hidden; }
+.relogio-header{ font-size: 85%; }
+.autorizar{ color: var(--vd) !important; }
+.rejeitar{ color: var(--vm) !important; }
+.actions-entradasegura .dropdown-item:hover{ background-color: var(--cz-2); }
+.btn-entradasegura{ background-color: var(--az-1); border-color: var(--az-1); color:var(--br); }
+.box-entradasegura{ border-top: 3px solid var(--am-1); }
+.box-entradasegura-vm{ border-top: 3px solid var(--vm); }
+.box-entradasegura-vd{ border-top: 3px solid var(--vd); }
+.box-entradasegura-az{ border-top: 3px solid var(--az-1); }
+.box-entradasegura .icon{ color:var(--cz-icon); }
+.box-entradasegura .icon > i.fas{ font-size: 50px; top: 0; }
+.btns-aprovacao button{ width: 200px; }
+.btns-card button{ width: 70px; }
+.btns-card input{ font-size: 12px; color: var(--az-0); }
+.btns-card .form-control{ padding: 0 5px; height: auto; }
+.autorizador-hora{ color: var(--vm); }
+.tempo-permanencia small{ margin-left:5px; }
+.entrega{ font-size: 14px; margin-left: 20px; }
+.btn-pool-1{ width: 100%; }
+
+.modal-detalhes .carousel-inner{ border-radius: 10px; }
+
+#quadro-1 .btn-default{ background-color: var(--cz-1); }
+#quadro-1 .btn-default:hover{ background-color: var(--cz-2); }
+.description-block{ margin: 0; }
+.description-block h6{ font-weight: normal; font-size: 14px; }
+.description-text{ font-size: 12px; color: var(--cz-0); }
+#quadro-2 .small-box .icon>i.fas{ font-size:50px; top:7px; cursor: pointer; }
+#quadro-2 .info-box{ padding: .2rem; }
+#quadro-2 .btn-liberar { margin-top: .3rem; }
+#quadro-2 h3{ cursor: pointer ;}
+#quadro-2 .small-box h3,
+#quadro-3 .small-box h3 { margin: 0; margin-top: 5px; }
+#quadro-2 .card-expansivel .info-box,
+#quadro-3 .card-expansivel .info-box{ margin-bottom: 0; padding:.3rem; min-height: 35px; }
+#quadro-3 .card-expansivel .info-box .info-box-icon{ font-size: 17px; }
+#quadro-3 .img-circle{ cursor: pointer; }
+
+.widget-user-2 .widget-user-header{ padding: .41rem; }
+
+.navbar-entradasegura { background-color: var(--az-0); color: var(--br); }
+.layout-top-nav .wrapper .main-header .brand-image { margin-top:0; margin-right: 0.5rem; }
+.aguardando-autorizacao{ font-size: 12px; }
+.titulo-pool{ font-weight: 600; font-size: 1.3rem; }
+.entradasegura-badge{ padding: 0; }
+#entradasegura-tab{ font-family: 'sony', sans-serif; font-size: 1.3rem; }
+.bg-mono{ background-color: var(--cz-1); }
+.bg-mono,.bg-mono>a{ color: var(--cz-3); }
+.btn-esq-campo{ border-top-left-radius: .25rem !important; border-bottom-left-radius: .25rem !important; }
+.pe-none{ pointer-events: none; }
+.aguardando-title{ color: var(--cz-3); }
+
+.az-1{ color: var(--az-1) !important; }
+#entradasegura-tabContent{ height: 90%; }
+#entradasegura-tabContent .tab-pane{ height: 100%; }
+.main-header .nav-item .nav-link{ color: var(--br); }
+.main-header .nav-item .nav-link:hover{ color: var(--az-1); }
+.main-header a.active { color: var(--az-2) !important; }
+
+.lh-12{ line-height: 12px; }
+
+/* --- RESTAURANTE --- */
+.restaurante-cards{}
+.restaurante-cards .card{ border-radius: 1rem; }
+.restaurante-cards .widget-user .widget-user-header{ height: 65px;border-top-left-radius: 1rem; border-top-right-radius:1rem; }
+.restaurante-cards .widget-user .widget-user-desc{ font-family: 'Roboto', sans-serif; font-size: 18px; margin-top: -10px; }
+.restaurante-cards .widget-user .widget-user-image{ top: 50px; margin-left: -35px; cursor: pointer; }
+.restaurante-cards .widget-user .widget-user-image>img{ width: 70px; border: none; }
+.restaurante-cards .ribbon{ font-size: .6rem; padding: 0.375rem 0 .3rem .3rem; }
+.restaurante-cards .input-group{ height: 50px; }
+.restaurante-cards .input-group  .input-group-text{ height: 38px; }
+.restaurante-cards .info{ display: none; }
+.restaurante-cards .info ul{ margin:0; padding:0; }
+.restaurante-cards .info ul li{ font-size: 12px; list-style: none; }
+.restaurante-cards .info ul li i{ margin-right: 10px; }
+.restaurante-cards .info .callout{ height: 116px; }
+.restaurante-cards .pronto{ display: none; }
+.restaurante-cards .pronto i{ margin-right: 10px; }
+.restaurante-cards .pronto .callout{ height: 154px; }
+
+.bg-cz{ background-color: var(--cz-4); }
+.quickform,
+.info{ height: 170px; }
+.bg-gradient{ background: linear-gradient(29deg, var(--rx-1), var(--az-1)); background-size: 250% 200%; }
+.bg-azul-esc{ background-color: var(--az-0); }
+.logo-restaurante{ width: 70px; height: 70px; position: absolute; background-color: var(--br); background-position: center center; background-size: 62px auto; background-repeat: no-repeat; }

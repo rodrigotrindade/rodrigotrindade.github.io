@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrada Segura</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="dist/entradasegura/css/style.css">
+  <style>
+      #model{ display: none; }
+  </style>
+</head>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar nav navbar-expand-md navbar-entradasegura">
+    <div class="container">
+        <img src="dist/entradasegura/img/logo_icon.png" alt="EntradaSeguraLogo" class="brand-image">
+        <span class="brand-text font-weight-light">Entrada Segura | <small>Restaurante Bene Mangiare</small></span>
+
+      <!-- Right navbar links -->
+      <ul class="order-1 order-md-3 navbar-nav ml-auto nav m-0" id="entradasegura-tab" role="tablist">
+        <!-- Messages Dropdown Menu -->
+        <li class="nav-item"><a class="nav-link active" id="entradasegura-painel-tab" data-toggle="pill" href="#entradasegura-painel" role="tab" aria-controls="entradasegura-painel" aria-selected="true">Painel</a></li>
+        <li class="nav-item"><a class="nav-link" id="entradasegura-relatorio-tab" data-toggle="pill" href="#entradasegura-relatorio" role="tab" aria-controls="entradasegura-relatorio" aria-selected="false">Relatório</a></li>
+        <li class="nav-item">
+          <a href="#" title="" class="nav-link">
+            <i class="fas fa-user-plus"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="https://api.whatsapp.com/send?phone=55DDDTelefoneEn&text=Olá, tudo bem?" target="_blank" title="WhatsApp" class="nav-link">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper pt-2 bg-cz">
+    <section class="content pb-3">
+      <div class="tab-content" id="entradasegura-tabContent">
+        <div class="tab-pane fade active show" id="entradasegura-painel" role="tabpanel" aria-labelledby="entradasegura-tab">
+            <div class="row restaurante-cards">
+                
+            </div>
+        </div>
+        <div class="tab-pane fade" id="entradasegura-relatorio" role="tabpanel" aria-labelledby="entradasegura-tab">
+            <div class="row">
+                <div class="col-sm-12">
+                    Conteúdo Relatório
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <a href="https://rodrigotrindade.com.br">Rodrigo Trindade - Design Digital 2021</a>
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 1.0.0
+    </div>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<div id="model">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+        <div class="card card-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="ribbon-wrapper">
+                <div class="ribbon bg-warning">
+                  Novo!
+                </div>
+            </div>
+            <div class="widget-user-header text-white bg-info" > 
+                <table style="height: 100%;">
+                    <tr>
+                        <td class="align-middle">
+                           <h5 class="widget-user-desc">Condomínio Velas da Marinha</h5> 
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="widget-user-image" title="Clique para informações">
+                <!-- <img class="img-circle elevation-1" src="https://www.jeremias.com.br/assets/condominio-velas-da-marina.jpg" alt="User Avatar"> -->
+                <div class="img-circle elevation-1 logo-restaurante" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/420px-Logo_NIKE.svg.png);"></div>       
+            </div>
+            <div class="card-footer">
+              <div class="row mt-3">
+                <div class="col-12">
+                    <form id="quickForm-##ID##" class="quickform" novalidate="novalidate">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text pl-3">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            </div>
+                            <input type="text" name="proprietario##ID##" class="form-control" placeholder="Proprietário">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-home"></i>
+                            </span>
+                            </div>
+                            <input type="text" name="lote##ID##" class="form-control" placeholder="Lote/Casa">
+                        </div>
+
+                        <button type="submit" class="btn btn-block btn-default">Enviar</button>
+                    </form>
+                    <div id="info-##ID##" class="info">
+                        <div class="callout callout-info">
+                            <h6>Informações</h6>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i> Rua Júlio de Castilhos, 820
+                                </li>
+                                <li>
+                                    <i class="fas fa-phone-alt"></i> (99) 99999-9999
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-block btn-warning">Voltar</button>
+                    </div>
+                    <div id="pronto-##ID##" class="pronto">
+                        <div class="callout callout-success">
+                            <h5><i class="fas fa-thumbs-up"></i>Pronto!</h5>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+    </div>
+</div>
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="plugins/jquery-validation/additional-methods.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+
+<script>
+    const $a = jQuery.noConflict();
+    $a(document).ready(init);
+
+    function init(){
+        const model = $a("#model").html();
+        for(let i=0;i<30;i++){
+            const form = model.replace(/##ID##/g,i);
+            $a(".restaurante-cards").append(form); 
+            validateCard(i);
+            actionInfo(i);
+        }
+    }
+
+    function sendForm(id){
+        $a("#pronto-"+id).show();
+        $a("#quickForm-"+id).hide();
+        setTimeout(function(){
+            $a("#pronto-"+id).hide();
+            $a("#quickForm-"+id).find("input").val("");
+            $a("#quickForm-"+id).show();
+        },3000);
+    }
+
+    function toggleCard(){
+        const toggle = $a(this).closest(".card").find(".quickform").is(":visible");
+        if(toggle){
+            $a(this).closest(".card").find(".quickform").hide();
+            $a(this).closest(".card").find(".info").show();
+        }else{
+            $a(this).closest(".card").find(".quickform").show();
+            $a(this).closest(".card").find(".info").hide();
+        }
+    }
+
+    function actionInfo(id){
+        $a("#quickForm-"+id).closest(".card").find(".widget-user-image").unbind("click");
+        $a("#quickForm-"+id).closest(".card").find(".widget-user-image").click(toggleCard);
+        $a("#info-"+id).find("button").unbind("click");
+        $a("#info-"+id).find("button").click(toggleCard);
+    }
+
+    function validateCard(id){
+        $a.validator.setDefaults({
+            submitHandler: function () {
+                sendForm(id);
+            }
+        });
+        $a('#quickForm-'+id).validate({
+            rules: {
+                ["proprietario"+id]: {
+                    required: true,
+                },
+                ["lote"+id]: {
+                    required: true,
+                },
+            },
+            messages: {
+                ["proprietario"+id]: {
+                    required: "Campo obrigatório!",
+                },
+                ["lote"+id]: {
+                    required: "Campo obrigatório!",
+                },
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.input-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $a(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $a(element).removeClass('is-invalid');
+            }
+        });
+    }
+  </script>
+</body>
+</html>
+

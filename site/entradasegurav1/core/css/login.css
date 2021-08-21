@@ -1,0 +1,10 @@
+/*
+ * Developed by / Design by
+ * Rodrigo Trindade
+ * rodrigo@rodrigotrindade.com.br
+ * www.rodrigotrindade.com.br
+ */
+
+body.login div#login h1 a { background-image: url("../images/site-login-logo.png"); background-size: 327px 77px; width: 327px; height: 77px; padding-bottom: 0; }
+
+body.login div#login #loginform{ margin-top: 0; }

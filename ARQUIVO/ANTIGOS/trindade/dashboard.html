@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <title>Security Fast Pass</title>
+    <style>
+        :root {
+            --main: #EB6D2F;
+            --am: #FD0;
+            --cz: #F8F7F1;
+            --cz-1: #CCC;
+            --cz-2: #999;
+            --cz-3: #333;
+            --cy: #adad83b9;
+            --cy-dark: #4bafaf;
+            --br: #ffffff;
+            --pr: #5A3733;
+        }
+
+        .vd{ color: #0F0; }
+        .vm{ color: #F00; }
+        .am{ color: #FD0; }
+
+        body,html{ font-family: 'Ubuntu', sans-serif; }
+        .container{ max-width: 100% !important; }
+        .numero{ color: #000; }
+        .numero h1{ font-size: 80px; }
+        .numero h3{ font-size: 30px; }
+
+        .ltx-hex {
+            overflow: hidden;
+            display: inline-block;
+            width: 154px;
+            height: 133.364px;
+            transform: rotate(-30deg) skewX(30deg);
+        }
+
+        .ltx-hex > .ltx-hex-inner,
+        .ltx-hex > .ltx-hex-inner:before {
+            display: block;
+            overflow: hidden;
+            width: inherit;
+            height: inherit;
+            border-radius: inherit;
+        }
+
+        .ltx-hex .ltx-hex-inner{
+            transform: skewX(-30deg) rotate(60deg) skewX(30deg);
+        }
+        
+        .ltx-hex .ltx-hex-inner:before {
+            transform: skewX(-30deg) rotate(60deg) skewX(30deg);
+            background-color: var(--cy);
+            content: '';
+        }
+        
+        .ltx-tech > .wpb_column:nth-child(2) > div {
+            -webkit-background-clip: padding-box;
+            -moz-background-clip: padding;
+            background-clip: padding-box;
+            padding: 0 130px 0 100px;
+        }
+
+        .services-sc{ margin-top: 5%; }
+
+        .services-sc.layout-icon-row article .ltx-hex-wrapper,
+        .services-sc.layout-icon-row article .ltx-hex {
+            width: 150px;
+            height: 160.52px;
+            margin: 0 3% 0 !important;
+        }
+
+        .services-sc.layout-icon-row article .ltx-hex-shadow {
+            top: 0;
+            left: 0;
+            position: absolute;
+            -webkit-filter: blur(5px);
+            -moz-filter: blur(5px);
+            -ms-filter: blur(5px);
+            filter: blur(5px);
+            zoom: 1;
+            filter: alpha(opacity=10);
+            -webkit-opacity: 0.3;
+            -moz-opacity: 0.3;
+            opacity: 0.31;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        .services-sc.layout-icon-row article .ltx-hex-shadow .ltx-hex-inner:before {
+            background-color: var(--pr);
+        }
+
+        .services-sc.layout-icon-row article .ltx-hex-white {
+            top: 0;
+            left: 0;
+            position: absolute;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        .services-sc.layout-icon-row article .ltx-hex-white .ltx-hex-inner:before {
+            background-color: var(--br);
+        }
+
+        .services-sc.layout-icon-row article .ltx-hex-gray {
+            top: 18px;
+            left: 10px;
+            position: absolute;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            width: 130px;
+            height: 125.88px;
+        }
+
+        @media (max-width: 2000px) {
+            .services-sc.layout-icon-row article .ltx-hex-wrapper,
+            .services-sc.layout-icon-row article .ltx-hex {
+                width: 190px;
+                height: 179.52px;
+                margin: 0 10% 0 !important;
+            }
+
+            .services-sc.layout-icon-row article .ltx-hex-gray {
+                top: 18px;
+                left: 10px;
+                width: 170px;
+                height: 145.88px;
+            }
+
+            .info ul{ position: absolute; margin:21px 0 0 50px; padding:0; width: 108px; }
+            .info ul li{ list-style: none; text-align: center; font-size: 18px; line-height: 16px; font-weight: 500; }
+            .info .icon{ margin-top: 20px; font-size: 22px; height: 32px; line-height: 21px; }
+            .info ul .led{ font-size: 24px !important; margin-top: 40px; text-shadow: 0px 0px 3px var(--cz-3); }
+
+            .cell{ height: 220px; }
+        }
+
+        @media (max-width: 1300px) {
+            .services-sc.layout-icon-row article .ltx-hex-wrapper,
+            .services-sc.layout-icon-row article .ltx-hex {
+                width: 120px;
+                height: 160.52px;
+                margin: 0 0 0 20px!important;
+            }
+
+            .services-sc.layout-icon-row article .ltx-hex-gray {
+                top: 18px;
+                left: 8px;
+                width: 104px;
+                height: 125.88px;
+            }
+
+            .info ul{ position: absolute; margin:38px 0 0 11px; padding:0; width: 108px; }
+            .info ul li{ list-style: none; text-align: center; font-size: 12px; line-height: 14px; font-weight: 600; }
+            .info .icon{ margin-top: 10px; font-size: 14px; height: 21px; line-height: 14px; }
+            .info ul .led{ font-size: 20px !important; margin-top: 12px; text-shadow: 0px 0px 3px var(--cz-3); }
+
+            .cell{ height: 130px; }
+        }
+
+        @media (max-width: 1200px) {
+            .services-sc.layout-icon-row article .ltx-hex-wrapper,
+            .services-sc.layout-icon-row article .ltx-hex {
+                width: 120px;
+                height: 160.52px;
+                margin: 0 0 0 -3px!important;
+            }
+
+            .services-sc.layout-icon-row article .ltx-hex-gray {
+                top: 18px;
+                left: 8px;
+                width: 104px;
+                height: 125.88px;
+            }
+
+            .info ul{ position: absolute; margin:38px 0 0 -12px; padding:0; width: 108px; }
+            .info ul li{ list-style: none; text-align: center; font-size: 12px; line-height: 14px; font-weight: 600; }
+            .info .icon{ margin-top: 5px; font-size: 14px; height: 21px; line-height: 14px; }
+            .info ul .led{ font-size: 20px !important; margin-top: 17px; text-shadow: 0px 0px 3px var(--cz-3); }
+
+            .cell{ height: 130px; }
+        }
+
+        @media (max-width: 900px) {
+            .services-sc.layout-icon-row article .ltx-hex-wrapper,
+            .services-sc.layout-icon-row article .ltx-hex {
+                width: 115px;
+                height: 135.52px;
+                margin: 0 0 0 !important;
+            }
+
+            .services-sc.layout-icon-row article .ltx-hex-gray {
+                top: 3px;
+                left: 5px;
+                width: 105px;
+                height: 129.88px;
+            }
+
+            .info ul{ position: absolute; margin:26px 0 0 -12px; padding:0; width: 108px; }
+            .info ul li{ list-style: none; text-align: center; font-size: 12px; line-height: 14px; font-weight: 600; }
+            .info .icon{ margin-top: 5px; font-size: 14px; height: 21px; line-height: 14px; }
+            .info ul .led{ font-size: 20px !important; margin-top: 17px; text-shadow: 0px 0px 3px var(--cz-3); }
+        }
+
+        .overlay{ position: fixed; top:0; border-left: 1px solid var(--cy-dark); background-color: rgba(111, 207, 236, 0.1); height: 100%; width: 50%; right: 0; }
+        .info{ position: absolute; z-index: 99;}
+        #favoModelo{ display: none !important; }
+        .cell{ cursor: pointer; }
+
+        .navbar {
+            position: relative;
+            padding: 30px 0;
+        }
+        .brand {
+            position: absolute;
+            left: 50%;
+            margin-left: -114px !important;
+            display: block;
+        }
+
+        .legenda{ position: fixed; bottom: 0; left: 0; padding: 5px  0 10px 10px; width: 300px; height: 60px; background-color: #00000030; }
+        .legenda .leg ul{ margin: 0; padding: 0; }
+        .legenda .leg ul li{ list-style: none; display: inline; margin-right: 20px; }
+        .legenda .leg ul li i{ text-shadow: 0px 0px 3px var(--cz-3); }
+        .legenda .leg ul li span{ margin-left: 10px; color: #333; font-size: 12px; }
+    </style>
+    <script>
+        const $a = jQuery.noConflict();
+
+        $a(document).ready(function(){
+            const stringJSON = '{"chegando": [{"lote": "L.1","quadra": "B.12","restaurante": "Village Fast Food","link": "index.html","status": "vd"},{"lote": "L.2","quadra": "B.22","restaurante": "Roda Pizza","link": "index.html","status": "am"},{"lote": "L.3","quadra": "B.32","restaurante": "Mac Donalds","link": "index.html","status": "vm"}],"aqui": [{"lote": "L.3","quadra": "B.33","restaurante": "Trindade Fast Food","link": "index.html","status": "vd"}]}';
+            const jsonPython = JSON.parse(stringJSON);
+            const tempoRefresh = 5;
+
+            // PRIMEIRA CARGA
+            createFavos(jsonPython);
+
+            // REFRESH CONTÍNUO
+            setInterval(function(){
+                createFavos(jsonPython);
+                // console.log("Refresh!");
+            },tempoRefresh*1000);       
+        });
+
+        function createFavos(json){
+            $a(".favos").html(""); 
+            $a("#chegando .quantidade").text(json.chegando.length);
+            $a("#chegando .label").text("Entregas Chegando");
+            $a("#aqui .quantidade").text(json.aqui.length);
+            $a("#aqui .label").text("Entregadores Aqui");
+
+            for(let i=0;i<json.chegando.length;i++)
+                $a("#chegando .favos").append(getTemplateFavo(json.chegando[i]));
+
+            for(let i=0;i<json.aqui.length;i++)
+                $a("#aqui .favos").append(getTemplateFavo(json.aqui[i]));
+
+            $a(".cell").click(function(){
+                if($a(this).attr("rel"))
+                    window.open($a(this).attr("rel"));
+            });
+        }
+
+        function getTemplateFavo(json){
+            let favo = $a("#favoModelo").html();
+            favo = favo.replace(/{{quadra}}/g,json.quadra);
+            favo = favo.replace(/{{lote}}/g,json.lote);
+            favo = favo.replace(/{{restaurante}}/g,json.restaurante);
+            favo = favo.replace(/{{status}}/g,json.status);
+            favo = favo.replace(/{{link}}/g,json.link);
+
+            return favo;
+        }
+    </script>
+</head>
+<body>
+    <div class="overlay"></div>
+    <nav class="navbar navbar-dark bg-dark text-center">
+        <a class="navbar-brand brand" href="#">
+            <img src="img/logo-br.png" alt="">
+            <span class="">Security Fast Pass</span>
+        </a>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div id="chegando" class="col-6">
+                <div class="numero">
+                    <h1 class="quantidade text-center mt-3"></h1>
+                    <h3 class="label text-center"></h3>
+                </div>
+                <div class="favos services-sc layout-icon-row ltx-style-gray row"></div>
+            </div>
+            <div id="aqui" class="col-6 h-100">
+                <div class="numero">
+                    <h1 class="quantidade text-center mt-3"></h1>
+                    <h3 class="label text-center"></h3>
+                </div>
+                <div class="favos services-sc layout-icon-row ltx-style-gray row"></div>
+            </div>
+        </div>
+    </div>
+    <div class="legenda">
+        <div class="leg">
+            <small>Legenda:</small>
+            <ul>
+                <li class="led vm"><i class="fa fa-circle"></i><span>NOK</span></li>
+                <li class="led am"><i class="fa fa-circle"></i><span>ATRASO</span></li>
+                <li class="led vd"><i class="fa fa-circle"></i><span>OK</span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- FAVO MODELO -->
+    <div id="favoModelo">
+        <div rel="{{link}}" title="Clique para verificar!" class="col-3 mb-2 cell">
+            <div class="info">
+                <ul>
+                    <li>{{quadra}}</li>
+                    <li>{{lote}}</li>
+                    <li class="icon">{{restaurante}}</li>
+                    <li class="led {{status}}"><i class="fa fa-circle"></i></li>
+                </ul>
+            </div>
+            <article class="services">
+                <span class="ltx-hex-wrapper">
+                    <span class="ltx-hex ltx-hex-shadow"><span class="ltx-hex-inner"></span></span>
+                    <span class="ltx-hex ltx-hex-white"><span class="ltx-hex-inner"></span></span>
+                    <span class="ltx-hex ltx-hex-gray"><span class="ltx-hex-inner"></span></span>
+                </span>
+            </article>
+        </div> 
+    </div>
+    <!-- FIM FAVO MODELO -->
+</body>
+</html>

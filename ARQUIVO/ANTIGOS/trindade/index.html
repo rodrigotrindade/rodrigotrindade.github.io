@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <title></title>
+    <style>
+        body,html{ font-family: 'Ubuntu', sans-serif; color: #FFF; background-color:#282828; max-width: 375px !important; }
+        .navbar{ background-color: #000; padding: 0; }
+        .navbar h1{ font-size: 30px !important; font-weight: normal; margin-bottom: 0; }
+        .navbar h2{ font-size: 18px !important; font-weight: normal; color: #CCC; }
+        .bg-vd{ background-color: #0ED145; color: #FFF; }
+        .bg-vm{ background-color: #F00; color: #FFF; }
+        .bg-cz{ background-color: #DDD; color: #666; }
+        .bg-az{ background-color: #4170f0; color: #FFF; }
+        .bg-br{ background-color: #FFF; color: #000; }
+        .bl-vd{ border-left: 5px solid #0ED145; }
+        .bl-lr{ border-left: 5px solid #d1b40e; }
+        .auth{ font-size: 16px; color: #000; }
+        .auth small{ font-size: 16px; padding-left: 5px; }
+        .icon{ margin: 10px; font-size: 24px; color:#000 !important; }
+        .centro{ padding-top: 28px; font-size: 16px; }
+        .btns{ height: 90px; width: 110px; font-weight: 500; font-size: 20px; border: none; text-transform: capitalize !important;  }
+        .btns a{ color: #FFF; text-decoration: none; padding:0; }
+        .arrows{ border-top: 40px solid transparent; border-bottom: 40px solid transparent; }
+        .arrow-right{ border-left: 40px solid #0ED145; }
+        .arrow-left{ border-right: 40px solid #F00; }
+        .info{ font-size: 16px; font-style: italic; }
+        .info small{ font-size:12px; font-style: normal !important; color: #666 !important; }
+        .arrow-down { position: relative; top: -5px; content: ""; display: inline-block; width: 35px;  height: 35px; border-right: 0.4em solid #6b6b6b; border-top: 0.4em solid #6b6b6b; transform: rotate(135deg); }
+        *{ outline: none; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar text-center">
+        <h1 class="text-center w-100">João da Silva</h1>
+        <h2 class="text-center w-100">CPF: 767.8 ***</h2>
+    </nav>
+    <div class="container">
+        <div class="row bg-vd">
+            <div class="col-8 p-2">
+                <span class="auth">Autorizado por: <small>Ana Maria</small></span><br>
+                <span class="auth">Quando?<small>1:03 horas atrás</small></span>
+            </div>
+            <div class="col-4 p-2">
+                <i class="fa fa-check float-right icon"></i>
+                <!-- <i class="fa fa-times float-right icon"></i> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 p-0">
+                <img class="mw-100" src="img/user.png">
+            </div>
+        </div>
+        <div class="row">
+            <form method ="post" action='/onboarding/{{delivery_transaction_id}}'></form>
+                <div class="col-4 p-0">
+                    <button type="submit" name="checkin_liberado" value="checkin_liberado" class="inputs bg-vd btns float-left text-center">Liberar</button>
+                </div>
+                <div class="col-4">
+                    <div class="text-center centro">ENTRADA</div>
+                </div>
+                <div class="col-4 p-0">
+                    <button type="submit" name="checkin_rejeitado" value="checkin_rejeitado" class="inputs bg-vm btns float-right text-center">Rejeitar</button>
+                </div>
+            </form>
+        </div>
+        <div class="row mt-2">
+            <div class="col-5"></div>
+            <div class="col-2">
+                <div class="arrow-down"></div>
+            </div>
+            <div class="col-5"></div>
+        </div>
+        <div class="row mt-3 mb-2">
+            <div class="col-12 p-2 bg-br info bl-lr">
+                <small>Origem:</small><br>
+                Lorem ipsum
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 p-2 bg-br info bl-vd">
+                <small>Destino:</small><br>
+                Dolor sit amet
+            </div>
+        </div>
+    </div>
+</body>
+</html>

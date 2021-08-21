@@ -1,0 +1,84 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <title></title>
+    <style>
+        body,html{ font-family: 'Ubuntu', sans-serif; color: #FFF; background-color:#282828; max-width: 812px !important; }
+        .navbar{ background-color: rgb(255, 1, 1); padding: 0; }
+        .navbar h1{ font-size: 30px !important; font-weight: normal; margin-bottom: 0; }
+        .navbar h1 i{ font-size: 54px !important; margin-right: 20px; color:#ff0; }
+        .bg-vd{ background-color: #0ED145; color: #FFF; }
+        .bg-vm{ background-color: #F00; color: #FFF; }
+        .bg-cz{ background-color: #DDD; color: #666; }
+        .bg-az{ background-color: #4170f0; color: #FFF; }
+        .bg-br{ background-color: #FFF; color: #000; }
+        .bl-vd{ border-left: 5px solid #0ED145; }
+        .bl-lr{ border-left: 5px solid #d1b40e; }
+        .bl-cz{ border-left: 5px solid #ada88e; }
+        .auth{ font-size: 16px; color: #000; }
+        .auth small{ font-size: 16px; padding-left: 5px; }
+        .icon{ margin: 10px; font-size: 24px; color:#000 !important; }
+        .centro{ padding-top: 28px; font-size: 16px; }
+        .btns{ height: 90px; width: 250px; font-weight: 500; font-size: 20px; border: none; outline: none;  }
+        .btns a{ color: #FFF; text-decoration: none; padding:0; }
+        .arrows{ border-top: 40px solid transparent; border-bottom: 40px solid transparent; }
+        .arrow-right{ border-left: 40px solid #666; }
+        .arrow-left{ border-right: 40px solid #666; }
+        .info{ font-size: 24px; font-style: italic; }
+        .info small{ font-size:13px; font-style: normal !important; color: rgb(0, 0, 0) !important; font-weight: 600; }
+        .arrow-down { position: relative; margin-left: 40px; content: ""; display: inline-block; width: 35px;  height: 35px; border-right: 0.4em solid #6b6b6b; border-top: 0.4em solid #6b6b6b; transform: rotate(135deg); }
+        *{ outline: none; }
+        @media (min-width: 576px){
+            .container {
+                max-width: 812px !important;
+            }
+            .arrow-down { margin-left: 20px; }
+        }
+        @media (min-width: 768px){
+            .container {
+                max-width: 812px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar text-center">
+        <h1 class="text-center w-100 p-3"><i class="fas fa-exclamation-triangle"></i>O Entregador não completou o processo!</h1>
+    </nav>
+    <div class="container">
+        
+        <div class="row mt-2">
+            <div class="col-12 p-2 bg-br info bl-cz">
+                <small>Origem:</small><br>
+                Lorem ipsum
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 p-2 bg-br info bl-cz">
+                <small>Destino:</small><br>
+                Dolor sit amet
+            </div>
+        </div>
+        <div class="row mt-2">
+            <form method ="post" action='/onboarding/{{delivery_transaction_id}}'></form>
+                <div class="col-4 p-0">
+                    <button type="submit" name="checkin_liberado" value="checkin_liberado" class="inputs bg-vd btns float-left text-center">Autorizar</button>
+                </div>
+                <div class="col-4">
+                    <div class="text-center centro">AUTORIZAÇÃO</div>
+                </div>
+                <div class="col-4 p-0">
+                    <button type="submit" name="checkin_rejeitado" value="checkin_rejeitado" class="inputs bg-vm btns float-right text-center">Rejeitar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

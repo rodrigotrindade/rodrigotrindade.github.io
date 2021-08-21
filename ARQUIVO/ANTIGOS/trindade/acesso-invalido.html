@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <title></title>
+    <style>
+        body,html{ font-family: 'Ubuntu', sans-serif; color: rgb(0, 0, 0); background-color: #000; max-width: 375px !important; }
+        .popup{ z-index: 10; position: absolute; }
+        .square{ padding: 20px; background-color: #FFF; width: 330px; margin-left: 20px; height: 300px; filter: drop-shadow(2px 2px 2px rgba(0,0,0,.5));  }
+        .square h1{ color:#F00; font-size: 24px; }
+        .square p{ color: #000; }
+        #motivo{ border: 1px solid #CCC; width: 100%; height: 100px; font-size:14px; color: #000; padding: 10px; overflow-y: scroll; }
+        .btns{ width: 100px; border: none; }
+        #cancelar{ float: left; }
+        #enviar{ float: right; background-color:#4170f0; color: #FFF; }
+        .clear{ clear: both; }
+        *{ outline: none; }
+    </style>
+</head>
+
+<body>
+    <div class="popup">
+        <div class="square mt-5">
+            <h1 class="text-center">ACESSO INVÁLIDO!</h1>
+            <h1 class="text-center"><i class="fa fa-exclamation-triangle"></i></h1>
+            <p class="text-center">Este QR Code é inválido.</p>
+            <form method ="post" action=''>
+                <textarea id="motivo" placeholder="Por favor, qual a placa do veículo?"></textarea>
+                <input type="submit" value="Cancelar" id="cancelar" class="btns">
+                <input type="submit" value="Enviar" id="enviar" class="btns">
+                <div class="clear"></div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
