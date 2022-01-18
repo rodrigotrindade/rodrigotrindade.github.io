@@ -1,0 +1,32 @@
+<div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="nomeEstabelecimento ">Nome Estabelecimento<small>*</small></label>
+                    [text* nomeEstabelecimento class:form-control placeholder "Nome do Estabelecimento"]
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="nomeResponsavel">Nome do Responsável <small>*</small></label>
+                    [text* nomeResponsavel class:form-control placeholder "Nome do Responsável"]
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="contatoResponsavel">Contato Responsável<small>*</small></label>
+                    [text* contatoResponsavel class:form-control placeholder "Contato do Responsável"]
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="valor">Valor</label>
+                    [text* valor class:form-control placeholder "Valor"]
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+<button type="submit" class="wpcf7-form-control wpcf7-submit btn btn-default btn-flat btn-xs btn-transparent text-gray pt-5 pb-5" data-loading-text="Enviando...">Enviar</button>
+              </div>

@@ -1,0 +1,4 @@
+.menuzord.green .menuzord-menu > li.active > a, .menuzord.green .menuzord-menu > li:hover > a, .menuzord.green .menuzord-menu ul.dropdown li:hover > a {
+    background: #4bafaf;
+    color: #fff;
+}
