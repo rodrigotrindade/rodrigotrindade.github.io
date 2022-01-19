@@ -1,5 +1,6 @@
 <?php /* Section: home */ ?>
 <style>
+    html,body{ background-color: #091C32; }
     #home{ background-color: #091C32; height: 640px; }
     .aberturadir{ padding-left: 80px; padding-top: 1rem; }
     .aberturadir *{ color: #FFF !important; }
@@ -18,19 +19,20 @@
     @media only screen and (max-width: 600px) {
         .mobile{ display: block; padding-top: 10rem; }
         .desktop{ display: none; }
-        .aberturadir{ padding-left: 60px; padding-top: 0; }
+        .aberturadir{ padding-left: 60px; padding-top: 0; -webkit-margin-before: -8rem !important; }
         .logo-grande{ display: none; }
         .menuzord-brand{ width: 50%; }
+        #home .container{ padding-top: 10px !important; }
     }
     @media only screen and (min-width: 605px) {
         .mobile{ display: none; }
         .desktop{ display: block; }
         .aberturadir{ padding-left: 80px; padding-top: 1rem; }
         .logo-grande{ display: block; } 
-        .menuzord-brand{ width: 100% !important; }
     }
     .header-nav-wrapper,
     .menuzord-menu .menu-item{ background-color: #002843; }
+    .safari{ -webkit-margin-before: 15rem !important; }
 </style>
 <section id="home">
     <div class="container">
@@ -69,4 +71,11 @@ portaria dos condomínios</li>
             </div>
         </div>
     </div>
-</section>    
+</section>  
+
+<script type="text/javascript">
+if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('CriOS') == -1) {
+    const abertura = document.querySelector(".aberturadir");
+    abertura.classList.add("safari");
+}
+</script>
