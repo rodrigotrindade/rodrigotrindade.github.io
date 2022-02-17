@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrada Segura</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="dist/entradasegura/css/style.css">
+  <style>
+      :root{
+          --az-0: #0A2D44;
+          --az-1: #0059FF;
+          --az-2: rgb(0, 98, 255);
+      }
+      body{ background-color: var(--az-0); }
+      #model{ display: none; }
+      .logo-festas{ margin: 0 auto; width: 200px; height: 90px; background:url(dist/entradasegura/img/logo-entrada-segura.png) 0 0 no-repeat; background-size: cover; }
+      .bg-az{ background-color: var(--az-0); }
+      .main-footer{ font-size: 13px; padding: .3rem; }
+      .card-body small{ color: var(--az-1);}
+      #modal-escolha .modal-body{ height: 500px; }
+      #camera{ width: 100%; height: 100%; border: 1px solid var(--az-2); border-radius: 10px; }
+      .warn{ color: var(--vm); font-size: 12px; text-align: center; padding-top: 3px; }
+      .pic{ display: none; }
+      .pic img{ width: 353px; height: 267px; border-radius: 10px; }
+      #myCanvas{ width: 100%; height: 100%; display: none; }
+  </style>
+</head>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
+    <section class="logo pt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="logo-festas"></div>
+                </div>
+            </div>
+        </div>   
+    </section>
+    <section class="content pb-3">
+        <div class="bg-az p-3">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <div class="form-group">
+                        <label for="condominio">Condomínio <small>(Alterar)</small></label>
+                        <input type="text" class="form-control" id="condominio" placeholder="Condomínio">
+                    </div>
+                    <div class="form-group">
+                        <label for="morador">Morador</label>
+                        <input type="text" class="form-control" id="morador" placeholder="Morador">
+                    </div>
+                    <div class="form-group">
+                        <label for="casaLote">Casa e Lote</label>
+                        <input type="text" class="form-control" id="casaLote" placeholder="Casa e Lote">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-secondary w-100" type="button"  data-toggle="modal" data-target="#modal-enviar-nomes">Enviar Nomes</button>
+                    <button id="modalEscolha" class="btn btn-secondary w-100 d-none" type="button"  data-toggle="modal" data-target="#modal-escolha">Escolha</button>
+                    <button id="Pronto" class="btn btn-info w-100 mt-2">Pronto</button>         
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="modal-enviar-nomes">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Escolha o método...</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <button id="listaFoto" type="button" class="btn btn-default lista-modal">
+                        Tirar Foto Lista
+                    </button>
+                    <button id="listaImportar" type="button" class="btn btn-default lista-modal">
+                        Importar Lista
+                    </button>
+                    <button id="listaDigitar" type="button" class="btn btn-default lista-modal">
+                        Digitar Lista
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-escolha">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+
+<script>
+    const $a = jQuery.noConflict();
+    var canvas;
+    var ctx;
+    var video;
+    var webcamStream;
+    $a(document).ready(init);
+
+    function init(){
+        $a(".lista-modal").click(importList);
+    }
+
+    function importList(){
+        const type = $a(this).attr("id");
+        let title = "Digite a lista...";
+        let content = '<div id="summernote"></div>';
+        $a("#modalEscolha").trigger("click");
+        $a('#summernote').summernote('destroy');
+        if(type==="listaFoto"){
+            title = "Tirar uma foto...";
+            content = $a("#model-foto").html(); 
+        }else if(type==="listaImportar"){
+            title = "Importar uma lista...";
+            content = $a("#model-importar").html(); 
+        }
+
+        $a("#modal-escolha").find(".modal-title").html(title);
+        $a("#modal-escolha").find(".modal-body").html(content);
+        $a("#modal-enviar-nomes").find(".close").trigger("click");
+
+        if(type==="listaDigitar"){
+            $a('#summernote').summernote({
+                height: 400,
+                toolbar: [
+                    ['paragraph', ['ol','ul']]
+                ],
+                callbacks: {
+                    onChange: function(contents) {
+                        console.log(contents);
+                    }
+                }
+            });
+        }else if(type==="listaFoto"){
+            initCam();
+        }
+    }
+
+    function initCam(){
+        video = document.querySelector('#camera');
+        video
+        canvas = document.querySelector("#myCanvas");
+        ctx = canvas.getContext('2d');
+        startCam();
+        $a(".capture").click(snapshot);
+        $a(".actualPic").click(actualPic);
+    }
+
+    function startCam(){
+        navigator.getUserMedia = ( 
+            navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia
+        );
+
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia(
+                {
+                    video: true,
+                    audio: false
+                },
+                function(localMediaStream) {
+                    video.srcObject = localMediaStream;
+                    webcamStream = localMediaStream;
+                },
+                function(err) {
+                    console.error("Erro encontrado: " + err);
+                }
+            );
+        }else{
+            console.error("Suporte à câmera não suportado!");
+        }
+    }
+
+    function actualPic(){
+        if(!$a("#foto").val()){
+            $a(".warn").text("Não há foto capturada!");
+            setTimeout(function(){
+                $a(".warn").text("");
+            },2000);
+            goBack();
+            return;
+        }
+
+        $a(".pic").html("");
+        $a(".pic").show();
+        $a(".camera").hide();
+        $a(".capture").hide();
+        $a(".pic").html("<img src='"+$a("#foto").val()+"'>");
+        $a(".actualPic").html("Voltar Câmera");
+        $a(".actualPic").unbind("click");
+        $a(".actualPic").click(goBack);
+    }
+
+    function goBack(){
+        $a(".pic").html("");
+        $a(".pic").hide();
+        $a(".actualPic").html("Foto Atual");
+        $a(".camera").show();
+        $a(".capture").show();
+        $a(".actualPic").unbind("click");
+        $a(".actualPic").click(actualPic);
+    }
+
+    function snapshot() {
+        ctx.drawImage(video,0,0,canvas.width,canvas.height);
+        canvas = document.querySelector("#myCanvas");
+        var base64 = canvas.toDataURL();
+        $a("#foto").val(base64);
+        $a(".warn").text("Foto capturada!");
+        actualPic();
+        setTimeout(function(){
+            $a(".warn").text("");
+        },2000);
+    };
+
+  </script>
+    <div id="model-importar" class="d-none">
+        <div class="form-group">
+            <label for="exampleInputFile">Escolha do seu computador</label>
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="exampleInputFile">
+                    <label class="custom-file-label" for="exampleInputFile"></label>
+                </div>
+                <div class="input-group-append">
+                    <span class="input-group-text">Enviar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="model-foto" class="d-none">
+        <div class="camera">
+            <video id="camera" controls autoplay></video>
+            <canvas id="myCanvas"></canvas>  
+        </div>
+        <div class="pic"></div>
+        <div class="warn"></div>
+        <button class="btn btn-info form-control capture">Capturar</button>
+        <button type="button" class="actualPic mt-2 btn btn-light form-control">Foto Atual</button>
+        <input type="hidden" name="foto" id="foto">
+    </div>
+</body>
+</html>
+
