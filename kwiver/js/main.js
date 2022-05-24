@@ -252,7 +252,7 @@
                         if (($link[0] === $this[0]) && !($link.data('index'))) {
                             //start from 0
                             if ($linksParentContainer.hasClass('owl-carousel') || $linksParentContainer.hasClass('images')) {
-                                options.index = i - 1;
+                                options.index = i;
                             } else {
                                 options.index = i;
                             }
@@ -1088,7 +1088,7 @@
                     loop: loop,
                     margin: margin,
                     nav: nav,
-                    autoplay: autoplay,
+                    autoplay: false,
                     dots: dots,
                     themeClass: themeClass,
                     center: center,

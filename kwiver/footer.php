@@ -1,5 +1,5 @@
-    <script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
+    <script src="<?=((!$internas) ? "./" : "../")?>js/compressed.js"></script>
+	<script src="<?=((!$internas) ? "./" : "../")?>js/main.js"></script>
 
 </body>
 

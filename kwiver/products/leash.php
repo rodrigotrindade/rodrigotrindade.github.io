@@ -24,7 +24,7 @@
 			</section>
             <!-- END TOP -->
 		
-			<section id="about" class="mt-5 about_us ls s-pb-xl-120 s-pb-lg-100 s-pb-md-60 s-pb-30 c-mb-30">
+			<section id="about" class="mt-5 about_us ls c-mb-30">
 				<div class="container">
 					<div class="row align-items-center">
 						<div class="col-lg-12 text-center text-sm-left order-1 order-lg-1">
@@ -121,6 +121,105 @@
 						<div class="col-lg-12 order-1">
 							<div class="text-block with-border">
 								<button type="submit" onclick="gobuy();" style="width:100%" class="single_add_to_cart_button button pl-5 pr-5 alt">Buy</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ds pt-5">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<h3 class="special-heading text-center">
+								<span class="text-capitalize ">
+									Our Projects
+								</span>
+							</h3>
+							<!-- <h3 class="special-heading text-center">
+								<span class="text-capitalize thin">
+									You Will Love It.
+								</span>
+							</h3> -->
+							<div class="fw-divider-space divider-30 divider-lg-65"></div>
+							<div class="row justify-content-center">
+								<div class="col-md-10 col-xl-8">
+									<div class="d-none filters gallery-filters small-text text-lg-right">
+										<a href="#" data-filter="*" class="active selected">All</a>
+										<a href="#" data-filter=".corporate">Web Design</a>
+										<a href="#" data-filter=".business">Logo Design </a>
+										<a href="#" data-filter=".entertainment">Averticement</a>
+										<a href="#" data-filter=".innovations">Averticement</a>
+										<a href="#" data-filter=".design">Design</a>
+										<a href="#" data-filter=".photo">Photo</a>
+									</div>
+								</div>
+							</div>
+							<?php
+								$photos = array(
+									array(
+										"index" => "1",
+										"date" => "February 1, 2022",
+										"text" => "Lorem ipsum dolor sit",
+										"link" => "#",
+										"filter" => ""
+									),
+									array(
+										"index" => "2",
+										"date" => "February 2, 2022",
+										"text" => "Lorem ipsum dolor sit",
+										"link" => "#",
+										"filter" => ""
+									),
+									array(
+										"index" => "3",
+										"date" => "February 3, 2022",
+										"text" => "Lorem ipsum dolor sit",
+										"link" => "#",
+										"filter" => ""
+									),
+									array(
+										"index" => "4",
+										"date" => "February 4, 2022",
+										"text" => "Lorem ipsum dolor sit",
+										"link" => "#",
+										"filter" => ""
+									),
+									array(
+										"index" => "5",
+										"date" => "February 5, 2022",
+										"text" => "Lorem ipsum dolor sit",
+										"link" => "#",
+										"filter" => ""
+									),
+									array(
+										"index" => "6",
+										"date" => "February 6, 2022",
+										"text" => "Lorem ipsum dolor sit",
+										"link" => "#",
+										"filter" => ""
+									),
+								);
+							?>
+							<div class="owl-carousel shortcode-gallery" data-dots="true" data-center="false" data-autoplay="true" data-margin="0" data-loop="false" data-responsive-lg="5" data-responsive-md="4" data-responsive-sm="2" data-responsive-xs="1" data-filters=".gallery-filters">
+								<?php foreach($photos as $photo): ?>
+								<div class="grid-item <?=$photo["filter"]?>">
+									<div class="vertical-item item-gallery content-absolute ds">
+										<div class="item-media">
+											<img src="../images/kwiver/leash/slides/slide-<?=$photo["index"]?>_p.png" alt="">
+										</div>
+										<div class="item-content ">
+											<span><?=$photo["date"]?></span>
+											<h6>
+												<a href="<?=$photo["link"]?>"><?=$photo["text"]?></a>
+											</h6>
+											<div class="links-wrap">
+												<a class="link-zoom photoswipe-link" title="" href="../images/kwiver/leash/slides/slide-<?=$photo["index"]?>.png"></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<?php endforeach; ?>
 							</div>
 						</div>
 					</div>

@@ -31,12 +31,12 @@
 	<link rel="stylesheet" href="<?=$ref?>css/main.css" class="color-switcher-link">
 	<link rel="stylesheet" href="<?=$ref?>css/shop.css" class="color-switcher-link">
 	<link rel="stylesheet" href="<?=$ref?>css/kwiver.css" class="color-switcher-link">
-	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="<?=((!$internas) ? "./" : "../")?>js/vendor/modernizr-2.6.2.min.js"></script>
 
 	<!--[if lt IE 9]>
-		<script src="js/vendor/html5shiv.min.js"></script>
-		<script src="js/vendor/respond.min.js"></script>
-		<script src="js/vendor/jquery-1.12.4.min.js"></script>
+		<script src="<?=((!$internas) ? "./" : "../")?>js/vendor/html5shiv.min.js"></script>
+		<script src="<?=((!$internas) ? "./" : "../")?>js/vendor/respond.min.js"></script>
+		<script src="<?=((!$internas) ? "./" : "../")?>js/vendor/jquery-1.12.4.min.js"></script>
 	<![endif]-->
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
