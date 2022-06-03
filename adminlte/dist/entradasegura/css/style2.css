@@ -1,0 +1,63 @@
+:root{
+    --az-0: #002943;
+    --az-1: #03ABBB;
+    --az-2: #74C3D0;
+    --az-3: #091C32;
+    --az-4: #325369;
+    --rx-0: #4c2da3;
+    --rx-1: #7d68b9;
+    --am-0: #FF0;
+    --am-1: #FFC107;
+    --vm: #DC3545;
+    --vd: #28A745;
+    --cz-0: #999;
+    --cz-1: #DDD;
+    --cz-2: #EEE;
+    --cz-3: #333;
+    --cz-4: #eef;
+    --cz-icon: rgb(0,0,0,.1);
+    --br: #FFF;
+}
+*{ outline: 0 !important; }
+@font-face {
+    font-family: 'sony';
+    src: url('../fonts/sony.eot');
+    src: url('../fonts/sony.eot') format('embedded-opentype'),
+        url('../fonts/sony.woff2') format('woff2'),
+        url('../fonts/sony.woff') format('woff'),
+        url('../fonts/sony.ttf') format('truetype'),
+        url('../fonts/sony.svg#sony') format('svg');
+}
+
+.fechar{ color: var(--cz-0); }
+.fechar:hover{ color: var(--vm); }
+
+/* SIDEBAR  */
+[class*="sidebar-dark-"] { background-color: var(--az-0); }
+.brand-link{ padding: 1.5rem 0.5rem; line-height: 0; }
+.brand-link .brand-image{ max-height: 48px; margin-left:0; margin-right:0.5rem; margin-top: -22px; }
+.brand-text{ font-family: 'sony', sans-serif; font-size: 1.5rem; }
+.es-function{ color: var(--az-1); }
+.info{ line-height: 1rem; }
+.user-panel img { width: 3.1rem; }
+
+/* TOP BAR  */
+.navbar-white { background-color: var(--az-3); }
+.nav-link{ color: var(--br) !important; }
+
+/* FOOTER  */
+.main-footer{ background-color: var(--az-3); }
+.main-footer a{ color: var(--az-1); }
+
+/* DATATABLES */
+.page-item.active .page-link { color: var(--br); background-color: var(--az-0); border-color: var(--az-0); }
+.page-link:hover { color: var(--az-1); }
+.page-link { color: var(--az-0); }
+.table td{ font-size:.85rem; }
+.table th{ color: var(--az-0); }
+.table td, .table th { padding:.55rem; }
+.checkin{ color: var(--az-1); }
+
+/* SOLICITAÇÕES */
+.verso{ display: none; }
+.es-title{ color: var(--az-0) !important; font-weight: 700; border-bottom: .1rem solid var(--az-0); }
