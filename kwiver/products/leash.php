@@ -158,44 +158,72 @@
 							<?php
 								$photos = array(
 									array(
+										"index" => "A",
+										"date" => "",
+										"text" => "",
+										"link" => "#",
+										"filter" => ""
+									),
+									array(
+										"index" => "B",
+										"date" => "",
+										"text" => "",
+										"link" => "#",
+										"filter" => ""
+									),
+									array(
+										"index" => "C",
+										"date" => "",
+										"text" => "",
+										"link" => "#",
+										"filter" => ""
+									),
+									array(
+										"index" => "D",
+										"date" => "",
+										"text" => "",
+										"link" => "#",
+										"filter" => ""
+									),
+									array(
 										"index" => "1",
-										"date" => "February 1, 2022",
-										"text" => "Lorem ipsum dolor sit",
+										"date" => "",
+										"text" => "",
 										"link" => "#",
 										"filter" => ""
 									),
 									array(
 										"index" => "2",
-										"date" => "February 2, 2022",
-										"text" => "Lorem ipsum dolor sit",
+										"date" => "",
+										"text" => "",
 										"link" => "#",
 										"filter" => ""
 									),
 									array(
 										"index" => "3",
-										"date" => "February 3, 2022",
-										"text" => "Lorem ipsum dolor sit",
+										"date" => "",
+										"text" => "",
 										"link" => "#",
 										"filter" => ""
 									),
 									array(
 										"index" => "4",
-										"date" => "February 4, 2022",
-										"text" => "Lorem ipsum dolor sit",
+										"date" => "",
+										"text" => "",
 										"link" => "#",
 										"filter" => ""
 									),
 									array(
 										"index" => "5",
-										"date" => "February 5, 2022",
-										"text" => "Lorem ipsum dolor sit",
+										"date" => "",
+										"text" => "",
 										"link" => "#",
 										"filter" => ""
 									),
 									array(
 										"index" => "6",
-										"date" => "February 6, 2022",
-										"text" => "Lorem ipsum dolor sit",
+										"date" => "",
+										"text" => "",
 										"link" => "#",
 										"filter" => ""
 									),
