@@ -10,6 +10,7 @@
     --golden: #dcae61;
     --light-green: #00ff3c;
     --pt: #000;
+    --overlay: #00000055;
     --vm: #f00;
     --sky: #61bbdc;
     --bolt: rotate(15deg);
@@ -102,6 +103,15 @@ hr{ margin: 1.5rem auto; border-top: .3rem solid var(--cz-4); width: 60%; }
 #middle .yes .yes-btn a{ color: var(--pr); }
 #middle .yes .next{ font-size: 1.5rem; font-weight: 600; border-radius: 2rem; background-color: var(--golden); padding: .3rem; }
 #middle .yes .chevron{ font-size: 2rem; font-weight: 600; position: absolute; margin-top:.1rem; margin-left:.5rem; }
+
+/* CANCEL */
+.overlay{ position: fixed; z-index: 999; width: 100%; height: 100%; background-color: var(--overlay); }
+.overlay .content{ background-color: var(--br); position: absolute; width: 80%; height: 50%; left: 10%; top: 15rem; }
+.overlay .content h1{ font-size: 1.7rem; font-weight: 600; }
+.overlay .content p{ font-size: 1.2rem; }
+.overlay .content button{ font-size: 1.5rem; color:var(--br); font-weight: 600; border: 0; border-radius: 1rem; width: 8rem; padding: .5rem 2rem; }
+.overlay .content .sim{ background-color: var(--deep-sea); margin-left: -2rem; }
+.overlay .content .nao{ background-color: var(--cz-4); margin-left: 2rem; }
 
 /* FOOTER */
 #footer{ height: 5rem; width: 100%; position:fixed; bottom: 0rem; background-color: var(--deep-sea); }
