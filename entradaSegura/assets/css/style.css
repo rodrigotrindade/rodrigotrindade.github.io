@@ -32,7 +32,7 @@
 hr{ margin: 1.5rem auto; border-top: .3rem solid var(--cz-4); width: 60%; }
 
 /* TOP */
-#top{ height: 10rem; width: 100%; position:fixed; top: 0; background-color: var(--deep-sea); }
+#top{ z-index: 99; height: 10rem; width: 100%; position:fixed; top: 0; background-color: var(--deep-sea); }
 #top .logo{ background: url(../img/logo.png) center no-repeat; background-size: contain; margin: 2em auto 0; height: 4.7rem; width: 21.9rem; }
 #top .tools,
 #top .tools a,
@@ -54,9 +54,9 @@ hr{ margin: 1.5rem auto; border-top: .3rem solid var(--cz-4); width: 60%; }
 #middle .need-help a:hover{ color: var(--deep-sea); }
 #middle p{ font-size: .8rem; }
 #middle .icon{ font-size: 5rem; }
-#middle .key{ -webkit-transform: var(--key); -moz-transform: var(--key); -ms-transform: var(--key); -o-transform: var(--key); }
-#middle .bolt{ margin-top: .5rem; -webkit-transform: var(--bolt); -moz-transform: var(--bolt); -ms-transform: var(--bolt); -o-transform: var(--bolt); }
-#middle .keys{ background: url(../img/keys.png) top no-repeat; background-size: cover; height: 5.5rem; width: 5rem; }
+#middle .key{ z-index: 1; -webkit-transform: var(--key); -moz-transform: var(--key); -ms-transform: var(--key); -o-transform: var(--key); }
+#middle .bolt{ z-index: 1; margin-top: .5rem; -webkit-transform: var(--bolt); -moz-transform: var(--bolt); -ms-transform: var(--bolt); -o-transform: var(--bolt); }
+#middle .keys{ z-index: 1; background: url(../img/keys.png) top no-repeat; background-size: cover; height: 5.5rem; width: 5rem; }
 #middle a:hover .keys{ background-position: bottom; }
 #middle .gerar{ background-color: var(--deep-sea); }
 #middle .ativar{ background-color: var(--aqua); }
@@ -106,10 +106,10 @@ hr{ margin: 1.5rem auto; border-top: .3rem solid var(--cz-4); width: 60%; }
 
 /* CANCEL */
 .overlay{ position: fixed; z-index: 999; width: 100%; height: 100%; background-color: var(--overlay); }
-.overlay .content{ background-color: var(--br); position: absolute; width: 80%; height: 50%; left: 10%; top: 15rem; }
-.overlay .content h1{ font-size: 1.7rem; font-weight: 600; }
-.overlay .content p{ font-size: 1.2rem; }
-.overlay .content button{ font-size: 1.5rem; color:var(--br); font-weight: 600; border: 0; border-radius: 1rem; width: 8rem; padding: .5rem 2rem; }
+.overlay .content{ background-color: var(--br); position: absolute; width: 80%; height: 55%; left: 10%; top: 5%; }
+.overlay .content h1{ font-size: 1.3rem; font-weight: 600; }
+.overlay .content p{ font-size: .8rem; }
+.overlay .content button{ font-size: 1rem; color:var(--br); font-weight: 600; border: 0; border-radius: 1rem; width: 6rem; padding: .5rem 2rem; }
 .overlay .content .sim{ background-color: var(--deep-sea); margin-left: -2rem; }
 .overlay .content .nao{ background-color: var(--cz-4); margin-left: 2rem; }
 
